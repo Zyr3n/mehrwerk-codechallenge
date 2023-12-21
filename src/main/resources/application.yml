@@ -1,14 +1,16 @@
 spring:
-  security:
-    oauth2:
-      client:
-        registration:
-          your-client-name:
-            client-id: bewerber
-            client-secret: ${CLIENT_SECRET}
-        provider:
-          your-provider-name:
-            token-uri: https://testapi.mehrwerk.de/v2/iam/oauth/token
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/yourdatabase
+#    username: yourusername
+#    password: yourpassword
+#    driver-class-name: com.mysql.cj.jdbc.Driver
 application:
   keys:
     api: ${API_KEY}
+    client-secret: ${CLIENT_SECRET}
+  uris:
+    token: https://testapi.mehrwerk.de/v2/iam/oauth/token
+    shops: https://testapi.mehrwerk.de/v3/cashback/shops
+logging:
+  level:
+    org.springframework.boot.autoconfigure: DEBUG
