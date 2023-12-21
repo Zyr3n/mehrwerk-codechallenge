@@ -1,0 +1,14 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          your-client-name:
+            client-id: bewerber
+            client-secret: ${CLIENT_SECRET}
+        provider:
+          your-provider-name:
+            token-uri: https://testapi.mehrwerk.de/v2/iam/oauth/token
+application:
+  keys:
+    api: ${API_KEY}
