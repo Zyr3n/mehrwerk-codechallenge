@@ -1,55 +1,66 @@
 package de.jsiemssen.mehrwerkcodechallenge.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Shop {
-	@Id
-	private String id;
-	private String name;
-	@Column(length = 1000)
-	private String description;
-	@OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Category> categories;
+    @Id
+    private String id;
+    private String name;
+    @Column(length = 1000)
+    private String description;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "shop_category",
+            joinColumns = @JoinColumn(name = "shop_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories = new HashSet<>();
 
-	public String getId() {
-		return id;
-	}
+    public void addCategory(Category category) {
+        categories.add(category);
+        category.getShops().add(this);
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void removeCategory(Category category) {
+        categories.remove(category);
+        category.getShops().remove(this);
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public List<Category> getCategories() {
-		return categories;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
 }

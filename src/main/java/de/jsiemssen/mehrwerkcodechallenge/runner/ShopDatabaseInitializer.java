@@ -1,7 +1,7 @@
 package de.jsiemssen.mehrwerkcodechallenge.runner;
 
 import de.jsiemssen.mehrwerkcodechallenge.service.ShopService;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;

@@ -2,43 +2,50 @@ package de.jsiemssen.mehrwerkcodechallenge.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Category {
-	@Id
-	private String id;
-	private String name;
+    @Id
+    private String id;
+    private String name;
+    @ManyToMany(mappedBy = "categories")
+    private Set<Shop> shops = new HashSet<>();
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "shop_id")
-	private Shop shop;
+    public Set<Shop> getShops() {
+        return shops;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public void setShops(Set<Shop> shops) {
+        this.shops = shops;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Shop getShop() {
-		return shop;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setShop(Shop shop) {
-		this.shop = shop;
-	}
+    public void addShop(Shop shop) {
+        this.shops.add(shop);
+    }
+
+    public void setShop(Shop shop) {
+        this.shops.add(shop);
+    }
 }
