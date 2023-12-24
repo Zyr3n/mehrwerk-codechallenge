@@ -22,16 +22,6 @@ public class Shop {
     )
     private Set<Category> categories = new HashSet<>();
 
-    public void addCategory(Category category) {
-        categories.add(category);
-        category.getShops().add(this);
-    }
-
-    public void removeCategory(Category category) {
-        categories.remove(category);
-        category.getShops().remove(this);
-    }
-
     public String getId() {
         return id;
     }

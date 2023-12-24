@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class MehrwerkCodechallengeApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(MehrwerkCodechallengeApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(MehrwerkCodechallengeApplication.class, args);
+    }
 }

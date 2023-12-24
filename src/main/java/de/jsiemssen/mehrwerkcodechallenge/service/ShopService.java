@@ -65,24 +65,24 @@ public class ShopService {
     }
 
     private ShopDTO convertToShopDTO(Shop shop) {
-        ShopDTO dto = new ShopDTO();
-        dto.setId(shop.getId());
-        dto.setName(shop.getName());
-        dto.setDescription(shop.getDescription());
+        ShopDTO shopDTO = new ShopDTO();
+        shopDTO.setId(shop.getId());
+        shopDTO.setName(shop.getName());
+        shopDTO.setDescription(shop.getDescription());
 
         Set<CategoryDTO> categoryDTOs = new HashSet<>();
         for (Category category : shop.getCategories()) {
             categoryDTOs.add(convertToCategoryDTO(category));
         }
-        dto.setCategories(categoryDTOs);
+        shopDTO.setCategories(categoryDTOs);
 
-        return dto;
+        return shopDTO;
     }
 
     private CategoryDTO convertToCategoryDTO(Category category) {
-        CategoryDTO dto = new CategoryDTO();
-        dto.setId(category.getId());
-        dto.setName(category.getName());
-        return dto;
+        CategoryDTO categoryDTO = new CategoryDTO();
+        categoryDTO.setId(category.getId());
+        categoryDTO.setName(category.getName());
+        return categoryDTO;
     }
 }
